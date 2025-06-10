@@ -34,7 +34,7 @@ app.listen(PORT, async () => {
     await db.authenticate();
     console.log("✅ Database connected.");
 
-   // await db.sync({ alter: true }); 
+    await db.sync({ force: true }); 
     console.log("📦 Models synchronized.");
 
     console.log(`🚀 Server is running on PORT: ${PORT}`);
