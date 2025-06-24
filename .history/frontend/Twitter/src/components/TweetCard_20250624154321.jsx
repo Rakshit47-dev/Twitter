@@ -79,7 +79,7 @@ export default function TweetCard({
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/comment/${commentId}`);
+      await axios.delete(`/comment/${commentId}`);
       setComments((prev) => ({
         ...prev,
         [tweet.post_id]: prev[tweet.post_id].filter(
@@ -97,14 +97,14 @@ const handleLike = async (postId,userId) => {
   try {
     if (!isLiked) {
       // Like the post
-      await axios.post(`${import.meta.env.VITE_API_URL}/likes/${postId}/like`, {
+      await axios.post(`http://13.62.71.215:3000/api/v1/likes/${postId}/like`, {
         userId: userId, 
       });
       setLikesCount((prev) => prev + 1);
       setIsLiked(true);
     } else {
       // Unlike the post
-      await axios.delete(`${import.meta.env.VITE_API_URL}/likes/${postId}/unlike`, {
+      await axios.delete(`http://13.62.71.215:3000/api/v1/likes/${postId}/unlike`, {
         data: { userId: userId }, 
       });
       setLikesCount((prev) => prev - 1);
@@ -119,7 +119,7 @@ const handleLike = async (postId,userId) => {
 useEffect(() => {
   const fetchLikes = async (postId) => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/likes/${postId}/likes`);
+      const res = await axios.get(`http://13.62.71.215:3000/api/v1/likes/${postId}/likes`);
       setLikesCount(res.data.totalLikes);
       // setIsLiked(res.data?.likedByUser.includes(userId)); 
     } catch (err) {

@@ -104,7 +104,7 @@ const handleLike = async (postId,userId) => {
       setIsLiked(true);
     } else {
       // Unlike the post
-      await axios.delete(`${import.meta.env.VITE_API_URL}/likes/${postId}/unlike`, {
+      await axios.delete(`/likes/${postId}/unlike`, {
         data: { userId: userId }, 
       });
       setLikesCount((prev) => prev - 1);
@@ -119,7 +119,7 @@ const handleLike = async (postId,userId) => {
 useEffect(() => {
   const fetchLikes = async (postId) => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/likes/${postId}/likes`);
+      const res = await axios.get(`http://13.62.71.215:3000/api/v1/likes/${postId}/likes`);
       setLikesCount(res.data.totalLikes);
       // setIsLiked(res.data?.likedByUser.includes(userId)); 
     } catch (err) {

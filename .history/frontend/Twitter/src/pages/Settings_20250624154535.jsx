@@ -43,7 +43,7 @@ const SettingsPage = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/user/${storedUser.user_id}`);
+      await axios.delete(`/user/${storedUser.user_id}`);
       localStorage.clear();
       toast.success("Account deleted successfully!");
       window.location.href = "/";

@@ -8,7 +8,7 @@ export default function useComments(userId) {
 
   const fetchComments = async (postId) => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/comment/posts/${postId}`);
+      const res = await axios.get(`/comment/posts/${postId}`);
       setComments((prev) => ({ ...prev, [postId]: res.data }));
     } catch (err) {
       console.error("Failed to load comments:", err);
@@ -20,7 +20,7 @@ export default function useComments(userId) {
     if (!text?.trim()) return;
 console.log(postId)
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/comment/posts/${parseInt(postId)}`, {
+      await axios.post(`http://13.62.71.215:3000/api/v1/comment/posts/${parseInt(postId)}`, {
         
         user_id: userId,
         comment: text,
