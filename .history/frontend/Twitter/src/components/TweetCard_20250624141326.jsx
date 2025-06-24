@@ -45,7 +45,7 @@ export default function TweetCard({
 
   const handleDeleteTweet = async () => {
     try {
-      await axios.delete(`http://13.62.71.215:3000/api/v1/post/${tweet.post_id}`);
+      await axios.delete(`http://localhost:3000/api/v1/post/${tweet.post_id}`);
       onDelete?.(tweet.post_id);
     } catch (error) {
       console.error("Failed to delete tweet:", error);
@@ -59,7 +59,7 @@ export default function TweetCard({
 
   const handleUpdateComment = async (commentId) => {
     try {
-      await axios.put(`http://13.62.71.215:3000/api/v1/comment/${commentId}`, {
+      await axios.put(`http://localhost:3000/api/v1/comment/${commentId}`, {
         post_id: tweet.post_id,
         user_id: tweet.user_id,
         comment: editedCommentText,
@@ -79,7 +79,7 @@ export default function TweetCard({
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`http://13.62.71.215:3000/api/v1/comment/${commentId}`);
+      await axios.delete(`http://localhost:3000/api/v1/comment/${commentId}`);
       setComments((prev) => ({
         ...prev,
         [tweet.post_id]: prev[tweet.post_id].filter(
@@ -97,14 +97,14 @@ const handleLike = async (postId,userId) => {
   try {
     if (!isLiked) {
       // Like the post
-      await axios.post(`http://13.62.71.215:3000/api/v1/likes/${postId}/like`, {
+      await axios.post(`http://localhost:3000/api/v1/likes/${postId}/like`, {
         userId: userId, 
       });
       setLikesCount((prev) => prev + 1);
       setIsLiked(true);
     } else {
       // Unlike the post
-      await axios.delete(`http://13.62.71.215:3000/api/v1/likes/${postId}/unlike`, {
+      await axios.delete(`http://localhost:3000/api/v1/likes/${postId}/unlike`, {
         data: { userId: userId }, 
       });
       setLikesCount((prev) => prev - 1);
@@ -119,7 +119,7 @@ const handleLike = async (postId,userId) => {
 useEffect(() => {
   const fetchLikes = async (postId) => {
     try {
-      const res = await axios.get(`http://13.62.71.215:3000/api/v1/likes/${postId}/likes`);
+      const res = await axios.get(`http://localhost:3000/api/v1/likes/${postId}/likes`);
       setLikesCount(res.data.totalLikes);
       // setIsLiked(res.data?.likedByUser.includes(userId)); 
     } catch (err) {

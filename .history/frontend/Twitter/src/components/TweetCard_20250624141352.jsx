@@ -119,7 +119,7 @@ const handleLike = async (postId,userId) => {
 useEffect(() => {
   const fetchLikes = async (postId) => {
     try {
-      const res = await axios.get(`http://13.62.71.215:3000/api/v1/likes/${postId}/likes`);
+      const res = await axios.get(`http://localhost:3000/api/v1/likes/${postId}/likes`);
       setLikesCount(res.data.totalLikes);
       // setIsLiked(res.data?.likedByUser.includes(userId)); 
     } catch (err) {

@@ -53,7 +53,7 @@ export default function SimpleTwitterDashboard() {
     if (!tweetText.trim() || tweetText.length > maxChars) return;
 
     try {
-      await axios.post("http://13.62.71.215:3000/api/v1/post", {
+      await axios.post("http://localhost:3000/api/v1/post", {
         user_id: userId,
         post_content: tweetText,
       });

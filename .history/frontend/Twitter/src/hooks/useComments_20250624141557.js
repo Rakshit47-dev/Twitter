@@ -20,7 +20,7 @@ export default function useComments(userId) {
     if (!text?.trim()) return;
 console.log(postId)
     try {
-      await axios.post(`http://13.62.71.215:3000/api/v1/comment/posts/${parseInt(postId)}`, {
+      await axios.post(`http://localhost:3000/api/v1/comment/posts/${parseInt(postId)}`, {
         
         user_id: userId,
         comment: text,

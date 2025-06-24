@@ -11,7 +11,7 @@ const likeRoutes = require('./routes/likeRoutes');
 
 const app = express();
 app.use(cors({
-  origin: "http://13.62.71.215", 
+  origin: "http://localhost:5173", 
   credentials: true,               
 })); 
 
@@ -29,12 +29,12 @@ app.use('/api/v1/likes', likeRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT,'0.0.0.0', async () => {
+app.listen(PORT, async () => {
   try {
     await db.authenticate();
     console.log("✅ Database connected.");
 
-    await db.sync(); 
+    await db.sync({force}); 
     console.log("📦 Models synchronized.");
 
     console.log(`🚀 Server is running on PORT: ${PORT}`);
