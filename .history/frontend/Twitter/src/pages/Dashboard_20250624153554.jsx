@@ -38,7 +38,7 @@ export default function SimpleTwitterDashboard() {
   const fetchTweets = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/post`);
+      const res = await axios.get("http://13.62.71.215:3000/api/v1/post");
       setTweets(res.data);
       console.log(res)
       res.data.forEach((tweet) => fetchComments(tweet.post_id));
@@ -53,7 +53,7 @@ export default function SimpleTwitterDashboard() {
     if (!tweetText.trim() || tweetText.length > maxChars) return;
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/post`, {
+      await axios.post(, {
         user_id: userId,
         post_content: tweetText,
       });
